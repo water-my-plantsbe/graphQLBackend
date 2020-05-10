@@ -5,10 +5,14 @@ import App from "./App";
 import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { createHttpLink } from "apollo-link-http";
 const cache = new InMemoryCache();
+const httpLink = createHttpLink({
+  uri: "http://localhost:5000/graphql",
+});
 
 const client = new ApolloClient({
-  link: "http://localhost:5000/graphql",
+  link: httpLink,
   cache,
   onError: ({ networkError }) => {
     if (networkError) {
