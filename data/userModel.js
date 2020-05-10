@@ -5,6 +5,7 @@ module.exports = {
   addUser,
   find,
   findBy,
+  findByEmail,
   findById,
   update,
   deleteUser,
@@ -22,8 +23,11 @@ function find() {
   return db("users").select("id", "username");
 }
 
-async function findBy(username) {
+function findBy(username) {
   return db("users").where({ username });
+}
+function findByEmail(email) {
+  return db("users").where({ email });
 }
 
 async function add(user) {

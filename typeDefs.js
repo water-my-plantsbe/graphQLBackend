@@ -10,7 +10,13 @@ exports.typeDefs = gql`
   }
 
   type Mutation {
-    signInUser(username: String!, password: String): Response
+    signInUser(username: String!, password: String!): Response
+    signUpUser(
+      username: String!
+      password: String!
+      email: String!
+      phone: String
+    ): Response
   }
   type Response {
     success: Boolean!
