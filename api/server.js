@@ -2,7 +2,7 @@ const express = require("express");
 const server = express();
 const cors = require("cors");
 const helmet = require("helmet");
-
+const { merge } = require("lodash");
 ///graphQL
 const { ApolloServer } = require("apollo-server-express");
 const User = require(".././data/userModel");
@@ -30,8 +30,8 @@ server.get("/", (req, res) => {
 });
 
 const graphQLServer = new ApolloServer({
-  typeDefs,
-  resolvers,
+  typeDefs: [typeDefs],
+  resolvers: merge(resolvers),
   context: ({ req }) => {
     return { User, Plant };
   },
