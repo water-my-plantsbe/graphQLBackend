@@ -1,4 +1,4 @@
-const db = require('./dbConfig.js');
+const db = require("./dbConfig.js");
 
 module.exports = {
   add,
@@ -11,40 +11,31 @@ module.exports = {
 };
 
 function update(id, user) {
-  return db('users')
-    .where('id', Number(id))
-    .update(user);
+  return db("users").where("id", Number(id)).update(user);
 }
 
-
 function deleteUser(id) {
-  return db('users')
-    .where({ id })
-    .delete()
-    
+  return db("users").where({ id }).delete();
 }
 
 function find() {
-  return db('users').select('id', 'username');
+  return db("users").select("id", "username");
 }
 
-function findBy(filter) {
-  return db('users').where(filter);
+async function findBy(username) {
+  return db("users").where({ username });
 }
 
 async function add(user) {
-  const [id] = await db('users').insert(user)
-  .returning("id");
+  const [id] = await db("users").insert(user).returning("id");
   return findById(id);
 }
 async function addUser(user) {
-  const [id] = await db('users').insert(user)
+  const [id] = await db("users").insert(user);
   //.returning("id");
   return findById(id);
 }
 
 function findById(id) {
-  return db('users')
-    .where({ id })
-    .first();
+  return db("users").where({ id }).first();
 }

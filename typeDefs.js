@@ -8,4 +8,13 @@ exports.typeDefs = gql`
     id: ID
     username: String!
   }
+
+  type Mutation {
+    signInUser(username: String!, password: String): Response
+  }
+  type Response {
+    success: Boolean!
+    token: String
+    message: String
+  }
 `;
