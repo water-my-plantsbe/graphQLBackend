@@ -4,6 +4,8 @@ import { SIGN_IN_USER } from "../queries";
 import Response from "../utils/Response";
 import { withRouter } from "react-router-dom";
 
+import "./Login.style.scss";
+
 const initialState = {
   username: "",
   password: "",
@@ -40,18 +42,22 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
-        <h1>Sign In</h1>
+      <div className="login-container">
+        <h1 className="signIn-title">Sign In</h1>
         <Mutation mutation={SIGN_IN_USER} variables={{ username, password }}>
           {(signInUser, { data, loading, error }) => {
             return (
-              <form onSubmit={(e) => this.handleSubmit(e, signInUser)}>
+              <form
+                className="form-container"
+                onSubmit={(e) => this.handleSubmit(e, signInUser)}
+              >
                 <input
                   name="username"
                   value={username}
                   type="text"
                   onChange={this.handleChange}
                   placeholder="username"
+                  className="input-item"
                 />
                 <input
                   name="password"
@@ -59,14 +65,19 @@ class Login extends Component {
                   value={password}
                   onChange={this.handleChange}
                   placeholder="password"
+                  className="input-item"
                 />
-                <button disabled={loading || this.validateForm()} type="submit">
+                <button
+                  className="btn btn-submit"
+                  disabled={loading || this.validateForm()}
+                  type="submit"
+                >
                   Sign In
                 </button>
                 {this.state.response ? (
                   <Response response={this.state.response} />
                 ) : null}
-                {error && <p>{error}</p>}
+                {error && <p className="error-message">{error}</p>}
               </form>
             );
           }}

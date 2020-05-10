@@ -1,0 +1,27 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  .signIn-title {
+    text-transform: uppercase;
+    margin: 10px auto;
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    .btn.btn-submit {
+      margin: 10px auto;
+      color: black;
+      border: 1px solid brown;
+      background: #a2b3bb;
+    }
+    .btn-submit:hover {
+      cursor: pointer;
+      border: 1px solid rgb(93, 77, 161);
+      background: #247397;
+      color: white;
+    }
+  }
+}

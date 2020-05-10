@@ -22,3 +22,21 @@ p {
   margin: 0;
   padding: 0;
 }
+
+.btn {
+  min-width: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.input-item {
+  min-width: 200px;
+  padding: 10px;
+  margin: 5px auto;
+  outline: none;
+  font-weight: bold;
+  font-size: 15px;
+  background: #efe9f4;
+  border-radius: 5px;
+  border-style: hidden;
+}

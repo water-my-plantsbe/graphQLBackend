@@ -12,8 +12,8 @@ const Navbar = ({ currentuser }) => {
         <NavLink to="/login" className="nav-item">
           Login
         </NavLink>
-        <NavLink to="/" className="nav-item">
-          Logout
+        <NavLink to="/register" className="nav-item">
+          Register
         </NavLink>
       </ul>
     </div>

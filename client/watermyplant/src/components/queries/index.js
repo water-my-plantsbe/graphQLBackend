@@ -11,3 +11,23 @@ export const SIGN_IN_USER = gql`
     }
   }
 `;
+
+export const SIGN_UP_USER = gql`
+  mutation(
+    $username: String!
+    $password: String!
+    $email: String!
+    $phone: String
+  ) {
+    signUpUser(
+      username: $username
+      password: $password
+      email: $email
+      phone: $phone
+    ) {
+      token
+      success
+      message
+    }
+  }
+`;
