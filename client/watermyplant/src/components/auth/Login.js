@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { SIGN_IN_USER } from "../queries";
+import Response from "../utils/Response";
+import { withRouter } from "react-router-dom";
+
 const initialState = {
   username: "",
   password: "",
+  response: null,
 };
 
 class Login extends Component {
@@ -15,10 +19,14 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = (e, signInUser) => {
-    console.log("heelo");
     e.preventDefault();
     signInUser().then(async (data) => {
-      console.log(data);
+      this.setState({ response: data.data.signInUser });
+      let token = data.data.signInUser.token;
+      if (token) {
+        localStorage.setItem("token", token);
+        this.props.history.push("/");
+      }
     });
   };
   validateForm = () => {
@@ -55,6 +63,9 @@ class Login extends Component {
                 <button disabled={loading || this.validateForm()} type="submit">
                   Sign In
                 </button>
+                {this.state.response ? (
+                  <Response response={this.state.response} />
+                ) : null}
                 {error && <p>{error}</p>}
               </form>
             );
@@ -65,4 +76,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

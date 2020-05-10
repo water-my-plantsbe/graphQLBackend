@@ -2,7 +2,9 @@ const express = require("express");
 const server = express();
 const cors = require("cors");
 const helmet = require("helmet");
+const jwt = require("jsonwebtoken");
 const { merge } = require("lodash");
+const SECRET = process.env.JWT_SECRET || "keep it secret, keep it safe";
 ///graphQL
 const { ApolloServer } = require("apollo-server-express");
 const User = require(".././data/userModel");
@@ -28,12 +30,26 @@ server.use("/api/plants", plants);
 server.get("/", (req, res) => {
   res.send("server is up");
 });
-
+//get current user
+const getUser = (token) => {
+  let currentUser = null;
+  if (token) {
+    try {
+      currentUser = jwt.verify(token, SECRET);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  return currentUser;
+};
+//----
 const graphQLServer = new ApolloServer({
   typeDefs: [typeDefs],
   resolvers: merge(resolvers),
   context: ({ req }) => {
-    return { User, Plant };
+    const token = req.headers.authorization;
+    const currentUser = getUser(token);
+    return { User, Plant, currentUser };
   },
 });
 

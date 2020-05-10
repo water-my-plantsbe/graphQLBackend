@@ -14,6 +14,14 @@ const httpLink = createHttpLink({
 const client = new ApolloClient({
   link: httpLink,
   cache,
+  request: (operation) => {
+    const token = localStorage.getItem("token");
+    operation.setContext({
+      headers: {
+        authorization: token,
+      },
+    });
+  },
   onError: ({ networkError }) => {
     if (networkError) {
       console.log("Network Error", networkError);
