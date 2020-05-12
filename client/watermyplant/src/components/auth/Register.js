@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "./Login.style.scss";
 import { SIGN_UP_USER } from "../queries/index";
 import { Mutation } from "react-apollo";
-import Response from "../utils/Response";
+import { ToastContainer, toast } from "react-toastify";
+import "./Login.style.scss";
+import "react-toastify/dist/ReactToastify.css";
 const initialState = {
   username: "",
   password: "",
@@ -23,10 +24,7 @@ class Register extends Component {
     e.preventDefault();
     signUpUser().then(async (data) => {
       this.setState({ response: data.data.signUpUser });
-      let success = data.data.signUpUser.success;
-      if (success) {
-        this.props.history.push("/login");
-      }
+      this.notify();
     });
   };
   validateForm = () => {
@@ -36,6 +34,12 @@ class Register extends Component {
   };
   clearState = () => {
     this.setState({ ...initialState });
+  };
+  notify = () => {
+    toast.info(this.state.response.message);
+    if (this.state.response.success) {
+      setTimeout(() => this.props.history.push("/login"), 800);
+    }
   };
   render() {
     const { username, password, email, phone, response } = this.state;
@@ -91,7 +95,7 @@ class Register extends Component {
                 >
                   Sign Up
                 </button>
-                {this.state.response ? <Response response={response} /> : null}
+                {response ? <ToastContainer /> : null}
                 {error && <p className="error-message">{error}</p>}
               </form>
             );
