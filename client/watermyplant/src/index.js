@@ -6,6 +6,7 @@ import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
+import WithSession from "./components/auth/WithSession";
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({
   uri: "http://localhost:5000/graphql",
@@ -32,10 +33,11 @@ const client = new ApolloClient({
   },
 });
 
+const AppWithSession = WithSession(App);
 ReactDOM.render(
   <ApolloProvider client={client}>
     <React.StrictMode>
-      <App />
+      <AppWithSession />
     </React.StrictMode>
     ,
   </ApolloProvider>,
