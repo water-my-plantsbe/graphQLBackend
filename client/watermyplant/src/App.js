@@ -4,7 +4,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Navbar from "./components/nav/Navbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-function App() {
+const App = ({ refetch, session }) => {
   return (
     <Router>
       <div className="App">
@@ -14,11 +14,11 @@ function App() {
             <Navbar />
           </div>
         </header>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/login" render={() => <Login refetch={refetch} />} />
+        <Route path="/register" render={() => <Register refetch={refetch} />} />
       </div>
     </Router>
   );
-}
+};
 
 export default App;

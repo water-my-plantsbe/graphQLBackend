@@ -33,7 +33,7 @@ server.get("/", (req, res) => {
 //get current user
 const getUser = (token) => {
   let currentUser = null;
-  if (token) {
+  if (token !== null && token !== "null") {
     try {
       currentUser = jwt.verify(token, SECRET);
     } catch (err) {
@@ -47,7 +47,7 @@ const graphQLServer = new ApolloServer({
   typeDefs: [typeDefs],
   resolvers: merge(resolvers),
   context: ({ req }) => {
-    const token = req.headers.authorization;
+    const token = req.headers.authorization || "";
     const currentUser = getUser(token);
     return { User, Plant, currentUser };
   },
