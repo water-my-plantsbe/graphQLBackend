@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { SIGN_IN_USER } from "../queries";
-import Response from "../utils/Response";
 import { withRouter } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
 import "./Login.style.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
   username: "",
@@ -24,10 +24,10 @@ class Login extends Component {
     e.preventDefault();
     signInUser().then(async (data) => {
       this.setState({ response: data.data.signInUser });
+      this.notify();
       let token = data.data.signInUser.token;
       if (token) {
         localStorage.setItem("token", token);
-        this.props.history.push("/");
       }
     });
   };
@@ -38,6 +38,12 @@ class Login extends Component {
   };
   clearState = () => {
     this.setState({ ...initialState });
+  };
+  notify = () => {
+    toast.info(this.state.response.message);
+    if (this.state.response.success) {
+      setTimeout(() => this.props.history.push("/"), 800);
+    }
   };
   render() {
     const { username, password } = this.state;
@@ -75,7 +81,8 @@ class Login extends Component {
                   Sign In
                 </button>
                 {this.state.response ? (
-                  <Response response={this.state.response} />
+                  // <NotificationContainer leaveTimeout={0} />
+                  <ToastContainer />
                 ) : null}
                 {error && <p className="error-message">{error}</p>}
               </form>
