@@ -25,15 +25,13 @@ class Register extends Component {
     signUpUser().then(async (data) => {
       this.setState({ response: data.data.signUpUser });
       this.notify();
+      await this.props.refetch();
     });
   };
   validateForm = () => {
     const { username, password } = this.state;
     const isInvalid = !username || !password;
     return isInvalid;
-  };
-  clearState = () => {
-    this.setState({ ...initialState });
   };
   notify = () => {
     toast.info(this.state.response.message);

@@ -20,7 +20,7 @@ class Login extends Component {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = (e, signInUser) => {
+  handleSubmit = async (e, signInUser) => {
     e.preventDefault();
     signInUser().then(async (data) => {
       this.setState({ response: data.data.signInUser });
@@ -30,16 +30,14 @@ class Login extends Component {
         localStorage.setItem("token", token);
       }
     });
+    // await this.props.refetch();
   };
   validateForm = () => {
     const { username, password } = this.state;
     const isInvalid = !username || !password;
     return isInvalid;
   };
-  clearState = () => {
-    this.setState({ ...initialState });
-  };
-  notify = () => {
+  notify = async () => {
     toast.info(this.state.response.message);
     if (this.state.response.success) {
       setTimeout(() => this.props.history.push("/"), 800);
