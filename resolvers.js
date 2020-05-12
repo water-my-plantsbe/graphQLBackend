@@ -12,6 +12,13 @@ exports.resolvers = {
       const allUsers = await User.find();
       return allUsers;
     },
+    getCurrentUser: async (root, args, { currentUser, User }) => {
+      if (!currentUser) {
+        return null;
+      }
+      const user = await User.findBy(currentUser.username);
+      return user[0];
+    },
   },
   Mutation: {
     signInUser: async (root, { username, password }, { User }) => {
