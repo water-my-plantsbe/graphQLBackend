@@ -1,4 +1,14 @@
 import { gql } from "apollo-boost";
+import { Query } from "react-apollo";
+// User Queries
+export const GET_CURRENT_USER = gql`
+  query {
+    getCurrentUser {
+      username
+      email
+    }
+  }
+`;
 
 // User Mutation
 
