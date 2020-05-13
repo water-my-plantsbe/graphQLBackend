@@ -1,0 +1,30 @@
+.right-body-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  .body-title-tag {
+    flex: 1;
+  }
+  section {
+    flex: 3;
+    padding: 20px;
+    .section {
+      margin-top: 15px;
+      font-size: 15px;
+      line-height: 2;
+      padding: 20px;
+    }
+    .btn.learn-more {
+      background: whitesmoke;
+      color: blue;
+      outline: none;
+      text-decoration: none;
+      &:hover {
+        cursor: pointer;
+        background: rgb(109, 79, 79);
+        color: white;
+      }
+    }
+  }
+}
