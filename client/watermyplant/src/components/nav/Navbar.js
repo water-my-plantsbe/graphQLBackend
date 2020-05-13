@@ -20,13 +20,13 @@ const SignedNavbar = ({ session }) => {
     <div className="navbar-container">
       <ul className="navbar-list">
         <div className="signed-navLink">
-          <NavLink to="/" className="nav-item signed">
+          <NavLink to="/" className="nav-item">
             Home
           </NavLink>
-          <NavLink to="/search" className="nav-item signed">
+          <NavLink to="/search" className="nav-item">
             Search
           </NavLink>
-          <p className="signed">
+          <p className="userName">
             Welcome, <strong>{session.getCurrentUser.username}</strong>
           </p>
         </div>

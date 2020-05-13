@@ -1,16 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: fantasy;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 h1,
@@ -18,16 +11,29 @@ h2,
 h3,
 h4,
 h5,
-p {
+p,
+ul,
+li,
+div,
+section {
   margin: 0;
   padding: 0;
 }
 
 .btn {
-  min-width: 100px;
-  padding: 10px;
+  font-family: fantasy;
+  min-width: 90px;
+  padding: 6px;
   border-radius: 5px;
   font-size: 15px;
+}
+.btn.btn-signOut {
+  background-color: rgb(238, 104, 55);
+  border: none;
+}
+.btn.btn-signOut:hover {
+  cursor: pointer;
+  background-color: rgb(114, 161, 214);
 }
 .input-item {
   min-width: 200px;

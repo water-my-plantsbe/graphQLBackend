@@ -1,19 +1,21 @@
+nav {
+  width: 50%;
+  text-align: center;
+}
 .navbar-list {
   display: flex;
   justify-content: flex-end;
-  width: 95vw;
-  margin-top: -10px;
+  align-items: center;
   .signed-navLink {
     display: flex;
     flex-direction: row;
-    .signed {
-      height: 18px;
-      margin: 10px 10px 0 0;
+    .userName {
+      margin: auto 15px;
     }
   }
   .nav-item {
-    margin: 0px 10px;
-    padding: 5px 7px;
+    margin: auto 5px;
+    padding: 4px 7px;
     background-color: #46ade9;
     color: black;
     border-radius: 5px;
