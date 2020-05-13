@@ -48,7 +48,10 @@ const graphQLServer = new ApolloServer({
   resolvers: merge(resolvers),
   context: ({ req }) => {
     const token = req.headers.authorization || "";
-    const currentUser = getUser(token);
+    let currentUser;
+    if (token) {
+      currentUser = getUser(token);
+    }
     return { User, Plant, currentUser };
   },
 });
