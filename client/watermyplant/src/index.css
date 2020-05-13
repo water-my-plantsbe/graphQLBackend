@@ -4,6 +4,12 @@ body {
   font-family: fantasy;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./assets/mainBG.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 h1,

@@ -6,13 +6,19 @@
     margin: 0px;
     width: calc(100% - 250px);
     height: calc(100vh - 100px);
-    background: rgb(212, 178, 166);
+    background-image: url("../../assets/right-Body.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
   }
   .left-sideBar {
     margin: 0px;
     width: 250px;
     height: calc(100vh - 100px);
-    background-color: rgb(146, 118, 122);
+    background-image: url("../../assets/left-sideBar.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
   }
   .bottom-footer {
     margin: 0px;
@@ -21,6 +27,6 @@
     left: 0;
     bottom: 0;
     position: fixed;
-    background-color: burlywood;
+    background-color: rgb(12, 5, 53);
   }
 }
