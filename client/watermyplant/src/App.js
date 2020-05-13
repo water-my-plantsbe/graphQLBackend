@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Navbar from "./components/nav/Navbar";
+import Layout from "./components/layout/Layout";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,12 +19,13 @@ const App = ({ refetch, session }) => {
           <Navbar session={session} />
         </header>
         <Switch>
+          <Route exact path="/" render={() => <Layout />} />
           <Route path="/login" render={() => <Login refetch={refetch} />} />
           <Route
             path="/register"
             render={() => <Register refetch={refetch} />}
           />
-          <Redirect to="/" />
+          {/* <Redirect to="/" /> */}
         </Switch>
       </Fragment>
     </Router>

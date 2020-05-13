@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
+    "client": "cd client/watermyplant && yarn start",
+    "dev": "concurrently --names \"server,client\" \"yarn server --silent\" \"yarn client --silent\"",
     "test": " jest --watch --verbose",
     "start": "node index.js"
   },
@@ -12,6 +14,7 @@
     "apollo-server-express": "^2.13.0",
     "bcryptjs": "^2.4.3",
     "circular-json": "^0.5.9",
+    "concurrently": "^5.2.0",
     "cors": "^2.8.5",
     "cron": "^1.7.0",
     "dotenv": "^7.0.0",

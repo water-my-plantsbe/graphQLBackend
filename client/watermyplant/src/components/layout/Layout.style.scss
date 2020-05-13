@@ -1,0 +1,26 @@
+.main-layout {
+  display: flex;
+  text-align: center;
+  margin: 0px;
+  .right-fullBody {
+    margin: 0px;
+    width: calc(100% - 250px);
+    height: calc(100vh - 100px);
+    background: rgb(212, 178, 166);
+  }
+  .left-sideBar {
+    margin: 0px;
+    width: 250px;
+    height: calc(100vh - 100px);
+    background-color: rgb(146, 118, 122);
+  }
+  .bottom-footer {
+    margin: 0px;
+    height: 50px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: burlywood;
+  }
+}
