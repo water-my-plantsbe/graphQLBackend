@@ -9,6 +9,9 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `;
+
+// Plant queries
+
 // User Mutation
 export const SIGN_IN_USER = gql`
   mutation($username: String!, $password: String!) {
@@ -36,6 +39,36 @@ export const SIGN_UP_USER = gql`
       token
       success
       message
+    }
+  }
+`;
+
+// Plant Mutation
+
+export const ADD_PLANT = gql`
+  mutation(
+    $name: String!
+    $description: String!
+    $url: String
+    $water_per_week: Int
+    $sunlight: String
+    $temperature: String
+    $difficulty: String
+    $size: String
+    $last_water: String
+  ) {
+    addPlant(
+      name: $name
+      description: $description
+      url: $url
+      water_per_week: $water_per_week
+      sunlight: $sunlight
+      temperature: $temperature
+      difficulty: $difficulty
+      size: $size
+      last_water: $last_water
+    ) {
+      success
     }
   }
 `;

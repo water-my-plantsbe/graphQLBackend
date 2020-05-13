@@ -111,5 +111,8 @@ exports.resolvers = {
         return Response;
       }
     },
+    addPlant: async (root, args, { Plant }) => {
+      return { success: true };
+    },
   },
 };

@@ -19,10 +19,24 @@ exports.typeDefs = gql`
       email: String!
       phone: String
     ): Response
+    addPlant(
+      name: String!
+      description: String!
+      url: String
+      water_per_week: Int
+      sunlight: String
+      temperature: String
+      difficulty: String
+      size: String
+      last_water: String
+    ): Plant
   }
   type Response {
     success: Boolean!
     token: String
     message: String
+  }
+  type Plant {
+    success: Boolean
   }
 `;
