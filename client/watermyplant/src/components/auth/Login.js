@@ -20,17 +20,16 @@ class Login extends Component {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = async (e, signInUser) => {
+  handleSubmit = (e, signInUser) => {
     e.preventDefault();
     signInUser().then(async (data) => {
       this.setState({ response: data.data.signInUser });
       this.notify();
       let token = data.data.signInUser.token;
-      if (token) {
-        localStorage.setItem("token", token);
-      }
+      localStorage.setItem("token", token);
+      await this.props.refetch();
+      setTimeout(() => this.props.history.push("/"), 800);
     });
-    // await this.props.refetch();
   };
   validateForm = () => {
     const { username, password } = this.state;
@@ -39,9 +38,6 @@ class Login extends Component {
   };
   notify = async () => {
     toast.info(this.state.response.message);
-    if (this.state.response.success) {
-      setTimeout(() => this.props.history.push("/"), 800);
-    }
   };
   render() {
     const { username, password } = this.state;
@@ -78,10 +74,7 @@ class Login extends Component {
                 >
                   Sign In
                 </button>
-                {this.state.response ? (
-                  // <NotificationContainer leaveTimeout={0} />
-                  <ToastContainer />
-                ) : null}
+                {this.state.response ? <ToastContainer /> : null}
                 {error && <p className="error-message">{error}</p>}
               </form>
             );
